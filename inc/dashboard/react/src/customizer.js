@@ -10,42 +10,42 @@ export const CustomizerLinks = () => {
 	const headerLinks = [
 		{
 			title: __( 'Global Colors', 'avanam' ),
-			description: __( 'Setup the base color scheme for your site.', 'avanam' ),
+			description: __( 'Set the theme global colors, button and background colors.', 'avanam' ),
 			focus: 'base_customizer_general_colors',
 			type: 'section',
 			setting: false
 		},
 		{
-			title: __( 'Branding', 'avanam' ),
-			description: __( 'Upload your logo and favicon.', 'avanam' ),
+			title: __( 'Logo & Favicon', 'avanam' ),
+			description: __( 'Upload your logo and favicon, set title and logo layout.', 'avanam' ),
 			focus: 'title_tagline',
 			type: 'section',
 			setting: false
 		},
 		{
 			title: __( 'Typography', 'avanam' ),
-			description: __( 'Choose the perfect font family, style and sizes.', 'avanam' ),
+			description: __( 'Select the perfect font family, style, weight, color and sizes.', 'avanam' ),
 			focus: 'base_customizer_general_typography',
 			type: 'section',
 			setting: false
 		},
 		{
 			title: __( 'Header Layout', 'avanam' ),
-			description: __( 'Add elements and arrange them how you want.', 'avanam' ),
+			description: __( 'Set the header layout, elements, colors, alignment and more.', 'avanam' ),
 			focus: 'base_customizer_header',
 			type: 'panel',
 			setting: false
 		},
 		{
 			title: __( 'Page Layout', 'avanam' ),
-			description: __( 'Define your sites general page look and feel for page title, and content style.', 'avanam' ),
+			description: __( 'Set the page width, page title, content style, spacing and more.', 'avanam' ),
 			focus: 'base_customizer_page_layout',
 			type: 'section',
 			setting: false
 		},
 		{
 			title: __( 'Footer Layout', 'avanam' ),
-			description: __( 'Customize the columns and place widget areas in unlimited configurations', 'avanam' ),
+			description: __( 'Set the footer layout, footer columns, widgets, colors and more.', 'avanam' ),
 			focus: 'base_customizer_footer_layout',
 			type: 'section',
 			setting: false

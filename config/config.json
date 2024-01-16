@@ -1,0 +1,11 @@
+{
+  "theme": {
+    "slug": "avanam",
+    "name": "Avanam",
+    "theme_uri": "https://github.com/wpdesignx/rebase",
+    "author": "wpdesignx",
+    "author_uri": "https://github.com/wpdesignx",
+    "description": "This is starter WordPress theme called Avanam. Created for theme developers to start building beautiful WordPress themes using Avanam.",
+    "PHPNamespace": "Avanam"
+  }
+}

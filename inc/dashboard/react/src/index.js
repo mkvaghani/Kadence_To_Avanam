@@ -40,11 +40,11 @@ class BaseDashboard extends Component {
 			// 	title: __( 'Recommended Plugins', 'avanam' ),
 			// 	className: 'base-recommended-tab',
 			// },
-			{
-				name: 'starter',
-				title: __( 'Starter Templates', 'avanam' ),
-				className: 'base-starter-tab',
-			},
+			// {
+			// 	name: 'starter',
+			// 	title: __( 'Starter Templates', 'avanam' ),
+			// 	className: 'base-starter-tab',
+			// },
 		];
 
 		const BaseDashTabPanel = () => (

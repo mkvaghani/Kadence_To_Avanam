@@ -15,61 +15,10 @@ const lockIcon = <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
 import map from 'lodash/map';
 
 export const ProModules = () => {
-	const proLinks = [
-		{
-			title: __( 'Header Addons', 'avanam' ),
-			description: __( 'Adds 19 elements to the header builder.', 'avanam' ),
-			setting: 'header_addon',
-		},
-		{
-			title: __( 'Conditional Headers', 'avanam' ),
-			description: __( 'Build Extra Headers to display conditionally.', 'avanam' ),
-			setting: 'conditional_headers',
-		},
-		{
-			title: __( 'Ultimate Menu', 'avanam' ),
-			description: __( 'Adds menu options for mega menus, highlight tags, icons and more.', 'avanam' ),
-			setting: 'mega_menu',
-		},
-		{
-			title: __( 'Header/Footer Scripts', 'avanam' ),
-			description: __( 'Adds Options into the customizer to add header and footer scripts', 'avanam' ),
-			setting: 'scripts',
-		},
-		{
-			title: __( 'Hooked Elements', 'avanam' ),
-			description: __( 'Add content anywhere into your site conditionally.', 'avanam' ),
-			setting: 'hooks',
-		},
-		{
-			title: __( 'WooCommerce Addons', 'avanam' ),
-			description: __( 'Adds new options into the customizer for WooCommerce stores.', 'avanam' ),
-			setting: 'woocommerce',
-		},
-		{
-			title: __( 'Infinite Scroll', 'avanam' ),
-			description: __( 'Adds Infinite Scroll for archives.', 'avanam' ),
-			setting: 'infinite_scroll',
-		},
-		{
-			title: __( 'Color Palette Switch (Dark Mode)', 'avanam' ),
-			description: __( 'Adds a color palette switch so you can create a "dark" mode for your website.', 'avanam' ),
-			setting: 'dark_mode',
-		},
-		{
-			title: __( 'Local Gravatars', 'avanam' ),
-			description: __( 'Loads Gravatars from your servers to improve site performance.', 'avanam' ),
-			setting: 'local_gravatars',
-		},
-		{
-			title: __( 'Archive Custom Page Title Backgrounds', 'avanam' ),
-			description: __( 'Allows you to assign a custom image for a taxonomy background.', 'avanam' ),
-			setting: 'archive_custom',
-		},
-	];
+	const proLinks = [];
 	return (
-		<>
-			<h2 className="section-header">{ __( 'Do more with the Avanam Pro Addon', 'avanam' ) }</h2>
+		<Fragment>
+			{/* <h2 className="section-header">{ __( 'Do more with the Avanam Pro Addon', 'avanam' ) }</h2>
 			<div className="two-col-grid">
 				{ map( proLinks, ( link ) => {
 					return (
@@ -85,8 +34,8 @@ export const ProModules = () => {
 						</div>
 					);
 				} ) }
-			</div>
-		</>
+			</div> */}
+		</Fragment>
 	);
 };
 

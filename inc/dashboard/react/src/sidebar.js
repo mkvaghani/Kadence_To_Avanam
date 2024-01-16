@@ -7,15 +7,6 @@ const { withFilters, TabPanel, Panel, PanelBody, PanelRow, Button } = wp.compone
 export const Sidebar = () => {
 	return (
 		<Fragment>
-			<Panel className="community-section sidebar-section">
-				<PanelBody
-					opened={ true }
-				>
-					<h2>{ __( 'Web Creators Community', 'avanam' ) }</h2>
-					<p>{ __( 'Join our community of fellow base users creating effective websites! Share your site, ask a question and help others.', 'avanam' ) }</p>
-					<a href="https://www.facebook.com/groups/" target="_blank" class="sidebar-link">{ __( 'Join our Facebook Group', 'avanam' ) }</a>
-				</PanelBody>
-			</Panel>
 			<Panel className="support-section sidebar-section">
 				<PanelBody
 					opened={ true }

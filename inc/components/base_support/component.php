@@ -95,9 +95,11 @@ class Component implements Component_Interface, Templating_Component_Interface {
 	public function initialize() {
 		add_action( 'after_setup_theme', array( $this, 'action_essential_theme_support' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'install_starter_script' ) );
-		add_action( 'admin_notices', array( $this, 'base_starter_templates_notice' ) );
+		//add_action( 'admin_notices', array( $this, 'base_starter_templates_notice' ) );
+		add_action( 'admin_notices', array( $this, 'base_welcome_notice' ) );
 		add_action( 'admin_notices', array( $this, 'base_turn_off_gutenberg_plugin_notice' ) );
-		add_action( 'wp_ajax_base_dismiss_notice', array( $this, 'ajax_dismiss_starter_notice' ) );
+		//add_action( 'wp_ajax_base_dismiss_notice', array( $this, 'ajax_dismiss_starter_notice' ) );
+		add_action( 'wp_ajax_base_dismiss_welcome_notice', array( $this, 'ajax_dismiss_welcome_notice' ) );
 		add_action( 'wp_ajax_base_dismiss_gutenberg_notice', array( $this, 'ajax_dismiss_gutenberg_notice' ) );
 		add_action( 'wp_ajax_base_install_starter', array( $this, 'install_plugin_ajax_callback' ) );
 		add_action( 'wp_head', array( $this, 'action_add_pingback_header' ) );
@@ -114,6 +116,57 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		add_filter( 'excerpt_length', array( $this, 'custom_excerpt_length' ) );
 		add_filter( 'the_author_description', 'wpautop' );
 	}
+	
+	/**
+	 * Add Notice for the Welcome Notice
+	 */
+	public function base_welcome_notice() {
+		if ( ! defined( 'AVANAM_VERSION' ) || get_option( 'base_disable_welcome_notice' ) ) {
+			return;
+		}
+		?>
+		<div id="base-notice-welcome-plugin" class="notice is-dismissible notice-info">
+			<h2 class="notice-title"><?php echo esc_html__( 'Thanks for choosing the Avanam Theme!', 'avanam' ); ?></h2>
+			<p class="base-notice-description"><?php /* translators: %s: <a> */ printf( esc_html__( 'Using %1$sAvanam Theme%2$s you can customize the styling of your site - including header fooder layout, font, colors and spacing - in your theme settings.', 'avanam' ), '<a href="https://avanam.org/" target="_blank">', '</a>' ); ?></p>
+			<?php if ( !isset( $_GET['page'] ) || $_GET['page'] !== 'avanam' ) { ?>
+			<p class="install-submit">
+				<a href="<?php echo esc_url( admin_url( 'themes.php?page=avanam' ) ); ?>"><button class="button button-primary base-theme-settings"><?php echo esc_html__( 'Go to Theme Settings', 'avanam' ); ?></button></a>
+			</p>
+			<?php } ?>
+		</div>
+		<?php
+		wp_enqueue_script( 'base-welcome-deactivate' );
+		wp_localize_script(
+			'base-welcome-deactivate',
+			'baseWelcomeDeactivate',
+			array(
+				'ajax_url'   => admin_url( 'admin-ajax.php' ),
+				'ajax_nonce' => wp_create_nonce( 'base-ajax-verification' ),
+			)
+		);
+	}
+
+	/**
+	 * Run check to see if we need to dismiss the notice.
+	 * If all tests are successful then call the dismiss_notice() method.
+	 *
+	 * @access public
+	 * @since 1.0
+	 * @return void
+	 */
+	public function ajax_dismiss_welcome_notice() {
+
+		// Sanity check: Early exit if we're not on a wptrt_dismiss_notice action.
+		if ( ! isset( $_POST['action'] ) || 'base_dismiss_welcome_notice' !== $_POST['action'] ) {
+			return;
+		}
+		// Security check: Make sure nonce is OK.
+		check_ajax_referer( 'base-ajax-verification', 'security', true );
+
+		// If we got this far, we need to dismiss the notice.
+		update_option( 'base_disable_welcome_notice', true, false );
+	}
+
 	/**
 	 * Add Notice for Base Starter templates
 	 */
@@ -131,7 +184,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 		} else {
 			return;
 		}
-		$starter_link = class_exists( '\\BaseWP\\BaseBlocks\\StellarWP\\Uplink\\Register' ) ? admin_url( 'admin.php?page=avanam-starter' ) : admin_url( 'themes.php?page=avanam-starter' );
+		$starter_link = class_exists( '\\BaseWP\\BaseBlocks\\AvanamOrg\\Uplink\\Register' ) ? admin_url( 'admin.php?page=avanam-starter' ) : admin_url( 'themes.php?page=avanam-starter' );
 		?>
 		<div id="base-notice-starter-templates" class="notice is-dismissible notice-info">
 			<div class="sub-notice-title"><?php echo esc_html__( 'Thanks for choosing the Avanam Theme!', 'avanam' ); ?></div>
@@ -222,6 +275,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 	 * Option to Install Starter Templates
 	 */
 	public function install_starter_script() {
+		wp_register_script( 'base-welcome-deactivate', get_template_directory_uri() . '/assets/js/welcome-notice.min.js', array( 'jquery' ), AVANAM_VERSION, false );
 		wp_register_script( 'base-starter-install', get_template_directory_uri() . '/assets/js/admin-activate.min.js', array( 'jquery' ), AVANAM_VERSION, false );
 		wp_register_script( 'base-gutenberg-deactivate', get_template_directory_uri() . '/assets/js/gutenberg-notice.min.js', array( 'jquery' ), AVANAM_VERSION, false );
 	}

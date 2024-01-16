@@ -131,7 +131,7 @@ class Base_Dashboard_Settings {
 				'status'       => $data_action,
 				'starterLabel' => $button_label,
 				'starterImage' => esc_attr( get_template_directory_uri() . '/assets/images/starter-templates-banner.jpeg' ),
-				'starterURL' => esc_url( class_exists( '\\BaseWP\\BaseBlocks\\StellarWP\\Uplink\\Register' ) ? admin_url( 'admin.php?page=avanam-starter' ) : admin_url( 'themes.php?page=avanam-starter' ) ),
+				'starterURL' => esc_url( class_exists( '\\BaseWP\\BaseBlocks\\AvanamOrg\\Uplink\\Register' ) ? admin_url( 'admin.php?page=avanam-starter' ) : admin_url( 'themes.php?page=avanam-starter' ) ),
 				'videoImage' => esc_attr( get_template_directory_uri() . '/assets/images/getting-started-video.jpg' ),
 			)
 		);
@@ -279,6 +279,7 @@ class Base_Dashboard_Settings {
 				</div>
 				<div class="base_theme_dash_version">
 					<span>
+						<strong><?php esc_html_e( 'Avanam', 'avanam' ); ?></strong>
 						<?php echo esc_html( AVANAM_VERSION ); ?>
 					</span>
 				</div>
@@ -293,13 +294,6 @@ class Base_Dashboard_Settings {
 					</div>
 					<div class="side-panel">
 						<?php do_action( 'base_theme_dash_side_panel' ); ?>
-						<div class="community-section sidebar-section components-panel">
-							<div class="components-panel__body is-opened">
-								<h2><?php esc_html_e( 'Web Creators Community', 'avanam' ); ?></h2>
-								<p><?php esc_html_e( 'Join our community of fellow base users creating effective websites! Share your site, ask a question and help others.', 'avanam' ); ?></p>
-								<a href="https://www.facebook.com/groups/" target="_blank" class="sidebar-link"><?php esc_html_e( 'Join our Facebook Group', 'avanam' ); ?></a>
-							</div>
-						</div>
 						<div class="support-section sidebar-section components-panel">
 							<div class="components-panel__body is-opened">
 								<h2><?php esc_html_e( 'Video Tutorials', 'avanam' ); ?></h2>

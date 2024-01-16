@@ -1,0 +1,67 @@
+{
+  "theme": {
+    "slug": "avanam_dev",
+    "name": "Avanam_Dev",
+    "author": "https://github.com/wpdesignx",
+    "PHPNamespace": "Avanam"
+  },
+  "dev": {
+    "browserSync": {
+      "live": true,
+      "proxyURL": "http://localhost/sites/AvanamGit",
+      "bypassPort": "8181",
+      "https": false
+    },
+    "styles": {
+      "stage": 3,
+      "autoprefixer": {
+        "grid": false
+      },
+      "features": {
+        "custom-media-queries": true,
+        "custom-properties": true,
+        "nesting-rules": true
+      }
+    },
+    "debug": {
+      "styles": false,
+      "scripts": false,
+      "phpcs": true
+    }
+  },
+  "export": {
+    "compress": true,
+    "generatePotFile": false,
+    "filesToCopy": [
+      "LICENSE",
+      "readme.txt",
+      "changelog.txt",
+      "screenshot.png",
+      "wpml-config.xml",
+      "webpack.config.js",
+      "assets/**/*.min.*",
+      "assets/fonts/**/*.*",
+      "assets/images/**/*.*",
+      "assets/js/admin/customizer.js",
+      "assets/js/admin/dashboard.js",
+      "assets/js/admin/meta.js",
+      "assets/js/admin/customizer.asset.php",
+      "assets/js/admin/dashboard.asset.php",
+      "assets/js/admin/meta.asset.php",
+      "assets/**/*.scss",
+      "assets/**/*.js",
+      "inc/**/*.scss",
+      "inc/**/*.js",
+      "inc/**/*.min.css",
+      "inc/**/*.min.js",
+      "inc/customizer/css/*.css",
+      "inc/customizer/react/build/*.css",
+      "inc/dashboard/react/build/*.css",
+      "inc/meta/react/build/*.css",
+      "languages/**/*.mo",
+      "languages/**/*.po",
+      "languages/readme.txt",
+      "languages/avanam.pot"
+    ]
+  }
+}

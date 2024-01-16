@@ -4,7 +4,7 @@ Tags: translation-ready, two-columns, right-sidebar, left-sidebar, footer-widget
 Requires at least: 6.2
 Tested up to: 6.4
 Requires PHP: 7.2
-Stable tag: 1.1.51
+Stable tag: 1.3.6
 License: GNU General Public License v3.0 (or later)
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -12,15 +12,13 @@ A progressive theme optimized and integrated with Gutenberg.
 
 == Description ==
 
-This is starter WordPress theme called Rebase. Created for theme developers to start building beautiful WordPress themes using Rebase.
+This is starter WordPress theme called Avanam. Created for theme developers to start building beautiful WordPress themes using Avanam.
 
 == License ==
 This theme is released under GNU General Public License v3.0 (or later)
 
-= Changelog =
-
-== 1.0.0 | 16th January 2024 ==
-* Initial Version.
+== Changelog ==
+For changelog please check changelog.txt file
 
 == Copyright, Credits & Resources ==
 
