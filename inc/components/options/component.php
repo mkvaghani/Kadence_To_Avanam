@@ -183,7 +183,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 				'base_theme_options_defaults',
 				array(
 					'content_width'   => array(
-						'size' => 1290,
+						'size' => 1430,
 						'unit' => 'px',
 					),
 					'content_narrow_width'   => array(
@@ -194,7 +194,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'size' => array(
 							'mobile'  => '',
 							'tablet'  => '',
-							'desktop' => 1.5,
+							'desktop' => 0.9375,
 						),
 						'unit' => array(
 							'mobile'  => 'rem',
@@ -204,9 +204,9 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					),
 					'content_spacing'   => array(
 						'size' => array(
-							'mobile'  => 2,
-							'tablet'  => 3,
-							'desktop' => 5,
+							'mobile'  => 1,
+							'tablet'  => 2,
+							'desktop' => 3,
 						),
 						'unit' => array(
 							'mobile'  => 'rem',
@@ -283,7 +283,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'size' => array(
 							'mobile'  => '',
 							'tablet'  => '',
-							'desktop' => 1.5,
+							'desktop' => 1.8,
 						),
 						'unit' => array(
 							'mobile'  => 'em',
@@ -346,10 +346,10 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'highlight'      => 'palette1',
 						'highlight-alt'  => 'palette2',
 						'highlight-alt2' => 'palette9',
-						'style'          => 'standard',
+						'style'          => 'no-underline',
 					),
 					// Scroll To Top.
-					'scroll_up'               => false,
+					'scroll_up'               => true,
 					'scroll_up_side'          => 'right',
 					'scroll_up_icon'          => 'arrow-up',
 					'scroll_up_icon_size'   => array(
@@ -391,9 +391,9 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					'scroll_up_visiblity' => array(
 						'desktop' => true,
 						'tablet'  => true,
-						'mobile'  => false,
+						'mobile'  => true,
 					),
-					'scroll_up_style' => 'outline',
+					'scroll_up_style' => 'filled',
 					'scroll_up_padding' => array(
 						'size'   => array( 
 							'desktop' => array( 0.4, 0.4, 0.4, 0.4 ),
@@ -406,20 +406,24 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						),
 					),
 					'scroll_up_color'                     => array(
-						'color'  => '',
-						'hover'  => '',
+						'color'  => 'palette1',
+						'hover'  => 'palette9',
 					),
 					'scroll_up_background'                     => array(
-						'color'  => '',
-						'hover'  => '',
+						'color'  => 'palette9',
+						'hover'  => 'palette1',
 					),
 					'scroll_up_border_colors'         => array(
-						'color'  => '',
+						'color'  => 'palette1',
 						'hover'  => '',
 					),
-					'scroll_up_border'    => array(),
+					'scroll_up_border'    => array(
+						'width' => 1,
+						'unit'  => 'px',
+						'style' => 'solid',
+					),
 					'scroll_up_radius' => array(
-						'size'   => array( 0, 0, 0, 0 ),
+						'size'   => array( 100, 100, 100, 100 ),
 						'unit'   => 'px',
 						'locked' => true,
 					),
@@ -475,19 +479,19 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						),
 					),
 					'buttons_shadow' => array(
-						'color'   => 'rgba(0,0,0,0)',
+						'color'   => '',
 						'hOffset' => 0,
 						'vOffset' => 0,
 						'blur'    => 0,
-						'spread'  => -7,
+						'spread'  => 0,
 						'inset'   => false,
 					),
 					'buttons_shadow_hover' => array(
-						'color'   => 'rgba(0,0,0,0.1)',
+						'color'   => '',
 						'hOffset' => 0,
 						'vOffset' => 15,
 						'blur'    => 25,
-						'spread'  => -7,
+						'spread'  => 0,
 						'inset'   => false,
 					),
 					'image_border_radius' => array(
@@ -530,9 +534,11 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					),
 					'h1_font' => array(
 						'size' => array(
+							'mobile' => 26,
 							'desktop' => 32,
 						),
 						'lineHeight' => array(
+							'mobile' => 1.3,
 							'desktop' => 1.5,
 						),
 						'family'  => 'inherit',
@@ -543,6 +549,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					),
 					'h2_font' => array(
 						'size' => array(
+							'mobile' => 22,
 							'desktop' => 28,
 						),
 						'lineHeight' => array(
@@ -681,7 +688,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					),
 					'header_wrap_background' => array(
 						'desktop' => array(
-							'color' => '#ffffff',
+							'color' => 'palette9',
 						),
 					),
 					// Header Main.
@@ -944,7 +951,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					'primary_navigation_fill_stretch' => false,
 					'primary_navigation_style'   => 'standard',
 					'primary_navigation_color'   => array(
-						'color'  => 'palette5',
+						'color'  => 'palette4',
 						'hover'  => 'palette-highlight',
 						'active' => 'palette3',
 					),
@@ -990,30 +997,30 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					),
 					'secondary_navigation_parent_active' => false,
 					// Dropdown.
-					'dropdown_navigation_reveal' => 'none',
+					'dropdown_navigation_reveal' => 'fade-up',
 					'dropdown_navigation_width'  => array(
-						'size' => 200,
+						'size' => 240,
 						'unit' => 'px',
 					),
 					'dropdown_navigation_vertical_spacing'   => array(
-						'size' => 1,
+						'size' => 0.3,
 						'unit' => 'em',
 					),
 					'dropdown_navigation_color'              => array(
-						'color'  => 'palette8',
-						'hover'  => 'palette9',
-						'active' => 'palette9',
+						'color'  => 'palette4',
+						'hover'  => 'palette-highlight',
+						'active' => 'palette-highlight',
 					),
 					'dropdown_navigation_background'              => array(
-						'color'  => 'palette3',
-						'hover'  => 'palette4',
-						'active' => 'palette4',
+						'color'  => 'palette9',
+						'hover'  => '',
+						'active' => '',
 					),
 					'dropdown_navigation_divider'              => array(
-						'width' => 1,
-						'unit'  => 'px',
-						'style' => 'solid',
-						'color' => 'rgba(255,255,255,0.1)',
+						'width' => '',
+						'unit'  => '',
+						'style' => '',
+						'color' => '',
 					),
 					'dropdown_navigation_shadow'              => array(
 						'color'   => 'rgba(0,0,0,0.1)',
@@ -1025,7 +1032,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					),
 					'dropdown_navigation_typography'            => array(
 						'size' => array(
-							'desktop' => 12,
+							'desktop' => '',
 						),
 						'lineHeight' => array(
 							'desktop' => '',
@@ -1079,16 +1086,16 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					'mobile_navigation_collapse' => true,
 					'mobile_navigation_parent_toggle' => false,
 					'mobile_navigation_width'  => array(
-						'size' => 200,
+						'size' => 240,
 						'unit' => 'px',
 					),
 					'mobile_navigation_vertical_spacing'   => array(
-						'size' => 1,
+						'size' => 0.6,
 						'unit' => 'em',
 					),
 					'mobile_navigation_color'              => array(
-						'color'  => 'palette8',
-						'hover'  => '',
+						'color'  => 'palette4',
+						'hover'  => 'palette-highlight',
 						'active' => 'palette-highlight',
 					),
 					'mobile_navigation_background'              => array(
@@ -1097,14 +1104,14 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'active' => '',
 					),
 					'mobile_navigation_divider'              => array(
-						'width' => 1,
+						'width' => 0,
 						'unit'  => 'px',
 						'style' => 'solid',
 						'color' => 'rgba(255,255,255,0.1)',
 					),
 					'mobile_navigation_typography'            => array(
 						'size' => array(
-							'desktop' => 14,
+							'desktop' => '',
 						),
 						'lineHeight' => array(
 							'desktop' => '',
@@ -1115,18 +1122,21 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'variant' => '',
 					),
 					// Header Popup.
-					'header_popup_side'           => 'right',
+					'header_popup_side'           => 'left',
 					'header_popup_layout'         => 'sidepanel',
 					'header_popup_animation'      => 'fade',
 					'header_popup_vertical_align' => 'top',
 					'header_popup_content_align'  => 'left',
 					'header_popup_background' => array(
 						'desktop' => array(
-							'color' => '',
+							'color' => 'palette9',
 						),
+						),
+					'header_popup_text_color'  => array(
+						'color' => 'palette4',
 					),
 					'header_popup_close_color'  => array(
-						'color' => '',
+						'color' => 'palette3',
 						'hover' => '',
 					),
 					'header_popup_close_background'  => array(
@@ -1269,7 +1279,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 							),
 						),
 					),
-					'header_social_style'        => 'filled',
+					'header_social_style'        => 'outline',
 					'header_social_show_label'   => false,
 					'header_social_item_spacing' => array(
 						'size' => 0.3,
@@ -1411,7 +1421,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					),
 					'header_search_icon'   => 'search',
 					'header_search_style'  => 'default',
-					'header_search_woo'    => false,
+					'header_search_woo'    => true,
 					'header_search_border' => array(
 						'width' => 1,
 						'unit'  => 'px',
@@ -1431,7 +1441,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						),
 					),
 					'header_search_color'              => array(
-						'color' => 'palette5',
+						'color' => 'palette4',
 						'hover' => 'palette-highlight',
 					),
 					'header_search_background'              => array(
@@ -1461,7 +1471,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'locked' => false,
 					),
 					'header_search_modal_color'              => array(
-						'color' => '',
+						'color' => 'palette9',
 						'hover' => '',
 					),
 					'header_search_modal_background'              => array(
@@ -2143,7 +2153,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 							),
 						),
 					),
-					'footer_social_style'        => 'filled',
+					'footer_social_style'        => 'outline',
 					'footer_social_show_label'   => false,
 					'footer_social_item_spacing' => array(
 						'size' => 0.3,
@@ -2305,7 +2315,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					'404_sidebar_id'         => 'sidebar-primary',
 					// Page Layout.
 					'page_layout'             => 'normal',
-					'page_content_style'      => 'boxed',
+					'page_content_style'      => 'unboxed',
 					'page_vertical_padding'   => 'show',
 					'page_comments'           => false,
 					'page_feature'            => false,
@@ -2318,9 +2328,9 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					'page_title_layout'       => 'above',
 					'page_title_height'       => array(
 						'size' => array(
-							'mobile'  => '',
-							'tablet'  => '',
-							'desktop' => 200,
+							'mobile'  => 95,
+							'tablet'  => 120,
+							'desktop' => 170,
 						),
 						'unit' => array(
 							'mobile'  => 'px',
@@ -2392,7 +2402,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'enabled' => true,
 					),
 					'page_title_element_breadcrumb' => array(
-						'enabled' => false,
+						'enabled' => true,
 						'show_title' => true,
 					),
 					'page_title_element_meta' => array(
@@ -2416,13 +2426,13 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'commentsCondition'      => false,
 					),
 					// Post Layout.
-					'post_layout'             => 'narrow',
-					'post_content_style'      => 'boxed',
+					'post_layout'             => 'right',
+					'post_content_style'      => 'unboxed',
 					'post_vertical_padding'   => 'show',
 					'post_sidebar_id'         => 'sidebar-primary',
 					'post_comments'           => true,
 					'post_comments_date'      => true,
-					'post_footer_area_boxed'  => false,
+					'post_footer_area_boxed'  => true,
 					'post_navigation'         => true,
 					'post_related'            => true,
 					'post_related_style'      => 'wide',
@@ -2441,25 +2451,25 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'variant' => '',
 						'color'   => '',
 					),
-					'post_related_background' => '',
+					'post_related_background' => 'palette7',
 					'post_tags'               => true,
 					'post_author_box'         => false,
 					'post_author_box_style'   => 'normal',
 					'post_author_box_link'    => true,
 					'post_feature'            => true,
-					'post_feature_position'   => 'behind',
+					'post_feature_position'   => 'above',
 					'post_feature_caption'    => false,
-					'post_feature_ratio'      => '2-3',
+					'post_feature_ratio'      => 'inherit',
 					'post_feature_width'      => 'wide',
 					'post_background'         => '',
 					'post_content_background' => '',
 					'post_title'              => true,
-					'post_title_layout'       => 'normal',
+					'post_title_layout'       => 'above',
 					'post_title_height'       => array(
 						'size' => array(
-							'mobile'  => '',
-							'tablet'  => '',
-							'desktop' => 200,
+							'mobile'  => 95,
+							'tablet'  => 120,
+							'desktop' => 170,
 						),
 						'unit' => array(
 							'mobile'  => 'px',
@@ -2571,7 +2581,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'enabled' => true,
 					),
 					'post_title_element_breadcrumb' => array(
-						'enabled' => false,
+						'enabled' => true,
 						'show_title' => true,
 					),
 					'post_title_element_excerpt' => array(
@@ -2614,9 +2624,9 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					'post_archive_title_inner_layout' => 'standard',
 					'post_archive_title_height'       => array(
 						'size' => array(
-							'mobile'  => '',
-							'tablet'  => '',
-							'desktop' => '',
+							'mobile'  => 95,
+							'tablet'  => 120,
+							'desktop' => 170,
 						),
 						'unit' => array(
 							'mobile'  => 'px',
@@ -2629,7 +2639,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'enabled' => true,
 					),
 					'post_archive_title_element_breadcrumb' => array(
-						'enabled' => false,
+						'enabled' => true,
 						'show_title' => true,
 					),
 					'post_archive_title_element_description' => array(
@@ -2659,9 +2669,9 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'color' => '',
 						'hover' => '',
 					),
-					'post_archive_layout'               => 'normal',
-					'post_archive_content_style'        => 'boxed',
-					'post_archive_columns'              => '3',
+					'post_archive_layout'               => 'right',
+					'post_archive_content_style'        => 'unboxed',
+					'post_archive_columns'              => '2',
 					'post_archive_item_image_placement' => 'above',
 					'post_archive_item_vertical_alignment' => 'top',
 					'post_archive_sidebar_id'           => 'sidebar-primary',
@@ -2701,7 +2711,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					),
 					'post_archive_element_feature' => array(
 						'enabled'   => true,
-						'ratio'     => '2-3',
+						'ratio'     => 'inherit',
 						'size'      => 'medium_large',
 						'imageLink' => true,
 					),
@@ -2763,13 +2773,13 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					'post_archive_column_layout'      => 'grid',
 					// Search Results.
 					'search_archive_title'              => true,
-					'search_archive_title_layout'       => 'normal',
+					'search_archive_title_layout'       => 'above',
 					'search_archive_title_inner_layout' => 'standard',
 					'search_archive_title_height'       => array(
 						'size' => array(
-							'mobile'  => '',
-							'tablet'  => '',
-							'desktop' => '',
+							'mobile'  => 95,
+							'tablet'  => 120,
+							'desktop' => 170,
 						),
 						'unit' => array(
 							'mobile'  => 'px',
@@ -2802,7 +2812,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'hover' => '',
 					),
 					'search_archive_layout'               => 'normal',
-					'search_archive_content_style'        => 'boxed',
+					'search_archive_content_style'        => 'unboxed',
 					'search_archive_columns'              => '3',
 					'search_archive_item_image_placement' => 'above',
 					'search_archive_sidebar_id'           => 'sidebar-primary',
@@ -2906,7 +2916,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					'product_archive_show_order' => true,
 					'product_archive_show_results_count' => true,
 					'product_archive_style'  => 'action-on-hover',
-					'product_archive_image_hover_switch' => 'none',
+					'product_archive_image_hover_switch' => 'fade',
 					'product_archive_button_style'       => 'text',
 					'product_archive_button_align'       => false,
 					'product_archive_title'              => true,
@@ -2914,9 +2924,9 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					'product_archive_title_inner_layout' => 'standard',
 					'product_archive_title_height'       => array(
 						'size' => array(
-							'mobile'  => '',
-							'tablet'  => '',
-							'desktop' => '',
+							'mobile'  => 95,
+							'tablet'  => 120,
+							'desktop' => 170,
 						),
 						'unit' => array(
 							'mobile'  => 'px',
@@ -2929,7 +2939,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'enabled' => true,
 					),
 					'product_archive_title_element_breadcrumb' => array(
-						'enabled' => false,
+						'enabled' => true,
 						'show_title' => true,
 					),
 					'product_archive_title_element_description' => array(
@@ -2971,8 +2981,8 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'color' => '',
 						'hover' => '',
 					),
-					'product_archive_layout'             => 'normal',
-					'product_archive_content_style'      => 'boxed',
+					'product_archive_layout'             => 'left',
+					'product_archive_content_style'      => 'unboxed',
 					'product_archive_sidebar_id'         => 'sidebar-primary',
 					'product_archive_title_font'   => array(
 						'size' => array(
@@ -3052,19 +3062,20 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'locked' => true,
 					),
 					// Product Controls.
-					'custom_quantity'                => false,
-					'product_archive_mobile_columns' => 'default',
+					'custom_quantity'                => true,
+					'product_archive_mobile_columns' => 'twocolumn',
 					'product_layout'             => 'normal',
 					'product_content_style'      => 'unboxed',
 					'product_vertical_padding'   => 'show',
-					'product_above_layout'       => 'breadcrumbs',
+					'product_above_layout'       => 'title',
 					'product_sidebar_id'         => 'sidebar-primary',
 					'product_navigation'         => false,
 					'product_related'            => true,
 					'product_large_cart_button'  => false,
 					'product_additional_weight_dimensions' => true,
 					'product_related_style'      => 'standard',
-					'product_related_columns'    => '4',
+					'product_related_columns'    => '5',
+					'product_upsell_columns'    => '5',
 					'product_content_elements'           => array( 'category', 'title', 'rating', 'price', 'excerpt', 'add_to_cart', 'extras', 'payments', 'product_meta', 'share' ),
 					'product_content_element_category' => array(
 						'enabled' => false,
@@ -3088,11 +3099,11 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'button_size' => '',
 					),
 					'product_content_element_extras' => array(
-						'enabled'   => false,
-						'title'     => __( 'Free shipping on orders over $50!', 'avanam' ),
-						'feature_1' => __( 'Satisfaction Guaranteed', 'avanam' ),
-						'feature_2' => __( 'No Hassle Refunds', 'avanam' ),
-						'feature_3' => __( 'Secure Payments', 'avanam' ),
+						'enabled'   => true,
+						'title'     => __( '', 'avanam' ),
+						'feature_1' => __( '<strong>Estimated Delivery : </strong> Up to 4 business days', 'avanam' ),
+						'feature_2' => __( '<strong>Free Shipping & Returns : </strong> On all orders over $200', 'avanam' ),
+						'feature_3' => '',
 						'feature_4' => '',
 						'feature_5' => '',
 						'feature_1_icon' => 'shield_check',
@@ -3102,14 +3113,14 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'feature_5_icon' => 'shield_check',
 					),
 					'product_content_element_payments' => array(
-						'enabled' => false,
-						'title'     => __( 'GUARANTEED SAFE CHECKOUT', 'avanam' ),
+						'enabled' => true,
+						'title'     => __( 'Guaranteed Safe And Secure Checkout', 'avanam' ),
 						'visa' => true,
 						'mastercard' => true,
 						'amex' => true,
 						'discover' => true,
 						'paypal' => true,
-						'applepay' => false,
+						'applepay' => true,
 						'stripe' => false,
 						'card_color' => 'inherit',
 						'custom_enable_01' => false,
@@ -3128,9 +3139,9 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'custom_img_05' => '',
 						'custom_id_05' => '',
 					),
-					'product_tab_style'   => 'normal',
+					'product_tab_style'   => 'center',
 					'variation_direction' => 'horizontal',
-					'product_tab_title'   => true,
+					'product_tab_title'   => false,
 					'product_content_element_product_meta' => array(
 						'enabled' => true,
 					),
@@ -3141,20 +3152,20 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					'product_content_background' => '',
 					'product_title_elements'           => array( 'breadcrumb', 'category', 'above_title' ),
 					'product_title_element_category' => array(
-						'enabled' => true,
+						'enabled' => false,
 					),
 					'product_title_element_above_title' => array(
 						'enabled' => false,
 					),
 					'product_title_element_breadcrumb' => array(
-						'enabled' => false,
+						'enabled' => true,
 						'show_title' => true,
 					),
 					'product_title_height'       => array(
 						'size' => array(
 							'mobile'  => '',
 							'tablet'  => '',
-							'desktop' => 200,
+							'desktop' => 80,
 						),
 						'unit' => array(
 							'mobile'  => 'px',
@@ -3223,7 +3234,7 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					),
 					'product_above_category_font'   => array(
 						'size' => array(
-							'desktop' => '32',
+							'desktop' => '20',
 						),
 						'lineHeight' => array(
 							'desktop' => '1.5',
@@ -3270,9 +3281,10 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'show_title' => true,
 					),
 					// Header Cart.
+					'header_cart_title' => '',
 					'header_cart_label' => '',
 					'header_cart_show_total' => true,
-					'header_cart_style' => 'link',
+					'header_cart_style' => 'slide',
 					'header_cart_popup_side' => 'right',
 					'header_cart_icon' => 'shopping-bag',
 					'header_cart_icon_size'   => array(
@@ -3295,6 +3307,22 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'color' => '',
 						'hover' => '',
 					),
+					'header_cart_title_typography'            => array(
+						'size' => array(
+							'desktop' => '',
+						),
+						'lineHeight' => array(
+							'desktop' => '',
+						),
+						'family'  => 'inherit',
+						'google'  => false,
+						'weight'  => '',
+						'variant' => '',
+					),
+					'header_cart_title_color'              => array(
+						'color' => '',
+						'hover' => '',
+					),
 					'header_cart_typography'            => array(
 						'size' => array(
 							'desktop' => '',
@@ -3307,15 +3335,20 @@ class Component implements Component_Interface, Templating_Component_Interface {
 						'weight'  => '',
 						'variant' => '',
 					),
+					'header_cart_label_color'              => array(
+						'color' => '',
+						'hover' => '',
+					),
 					'header_cart_padding' => array(
 						'size'   => array( '', '', '', '' ),
 						'unit'   => 'em',
 						'locked' => false,
 					),
 					// Mobile Header Cart.
+					'header_mobile_cart_title' => '',
 					'header_mobile_cart_label' => '',
 					'header_mobile_cart_show_total' => true,
-					'header_mobile_cart_style' => 'link',
+					'header_mobile_cart_style' => 'slide',
 					'header_mobile_cart_popup_side' => 'right',
 					'header_mobile_cart_icon' => 'shopping-bag',
 					'header_mobile_cart_icon_size'   => array(
@@ -3337,6 +3370,18 @@ class Component implements Component_Interface, Templating_Component_Interface {
 					'header_mobile_cart_total_background'              => array(
 						'color' => '',
 						'hover' => '',
+					),
+					'header_mobile_cart_title_typography'            => array(
+						'size' => array(
+							'desktop' => '',
+						),
+						'lineHeight' => array(
+							'desktop' => '',
+						),
+						'family'  => 'inherit',
+						'google'  => false,
+						'weight'  => '',
+						'variant' => '',
 					),
 					'header_mobile_cart_typography'            => array(
 						'size' => array(

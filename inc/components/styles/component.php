@@ -1459,6 +1459,17 @@ class Component implements Component_Interface, Templating_Component_Interface {
 			$css->add_property( 'background', $css->render_color( webapp()->sub_option( 'header_mobile_cart_total_background', 'hover' ) ) );
 			$css->add_property( 'color', $css->render_color( webapp()->sub_option( 'header_mobile_cart_total_color', 'hover' ) ) );
 			$css->set_selector( '.header-mobile-cart-wrap .header-cart-button .header-cart-label' );
+			$css->render_font( webapp()->option( 'header_mobile_cart_title_typography' ), $css );
+			$css->start_media_query( $media_query['tablet'] );
+			$css->set_selector( '.header-mobile-cart-wrap .header-cart-button .header-cart-title' );
+			$css->add_property( 'font-size', $this->render_font_size( webapp()->option( 'header_mobile_cart_title_typography' ), 'tablet' ) );
+			$css->add_property( 'line-height', $this->render_font_height( webapp()->option( 'header_mobile_cart_title_typography' ), 'tablet' ) );
+			$css->stop_media_query();
+			$css->start_media_query( $media_query['mobile'] );
+			$css->set_selector( '.header-mobile-cart-wrap .header-cart-button .header-cart-title' );
+			$css->add_property( 'font-size', $this->render_font_size( webapp()->option( 'header_mobile_cart_title_typography' ), 'mobile' ) );
+			$css->add_property( 'line-height', $this->render_font_height( webapp()->option( 'header_mobile_cart_title_typography' ), 'mobile' ) );
+			$css->stop_media_query();
 			$css->render_font( webapp()->option( 'header_mobile_cart_typography' ), $css );
 			$css->start_media_query( $media_query['tablet'] );
 			$css->set_selector( '.header-mobile-cart-wrap .header-cart-button .header-cart-label' );

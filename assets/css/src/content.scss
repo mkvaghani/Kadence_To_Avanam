@@ -318,10 +318,9 @@ article.sticky {
 .entry-meta {
 	font-size: 80%;
 	margin: 1em 0;
-	display: flex;
-	flex-wrap: wrap;
 	> * {
 		display: inline-flex;
+		vertical-align: middle;
 		align-items: center;
 		flex-wrap: wrap;
 		time {
@@ -512,6 +511,9 @@ a.post-more-link {
 		margin-bottom: 0;
 		> div {
 			width: 100%;
+		}
+		.entry-taxonomies{
+			margin-bottom: 1em;
 		}
 	}
 }

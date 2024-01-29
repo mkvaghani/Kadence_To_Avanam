@@ -182,6 +182,8 @@ class Component implements Component_Interface {
 		add_filter( 'woocommerce_blocks_product_grid_item_html', array( $this, 'custom_block_html' ), 2, 3 );
 		// Change related products columns.
 		add_filter( 'woocommerce_output_related_products_args', array( $this, 'related_products_columns' ), 20 );
+		// Change Upsell products columns.
+		add_filter( 'woocommerce_upsell_display_args', array( $this, 'upsell_products_columns' ), 20 );
 		// Add js for category toggling.
 		add_filter( 'woocommerce_product_categories_widget_args', array( $this, 'category_widget_toggle_script' ) );
 		// Add menu-item class to submenu of woo account nav.
@@ -399,6 +401,18 @@ class Component implements Component_Interface {
 		return $args;
 	}
 	/**
+	 * Sets columns for upsell columns.
+	 *
+	 * @param array $args for the upsell columns.
+	 * @return array updated args array.
+	 */
+	public function upsell_products_columns( $args ) {
+		$columns = absint( webapp()->option( 'product_upsell_columns' ) );
+		$args['posts_per_page'] = $columns;
+		$args['columns'] = $columns;
+		return $args;
+	}
+	/**
 	 * Sets classes for the product loop.
 	 *
 	 * @param string/array $classes for the product loop.
@@ -457,7 +471,11 @@ class Component implements Component_Interface {
 				esc_html( $product->add_to_cart_text() ) . '' . webapp()->get_icon( 'arrow-right-alt' ) . '' . webapp()->get_icon( 'spinner' ) . '' . webapp()->get_icon( 'check' )
 			);
 		}
-		$action_button = '<div class="wp-block-button wc-block-grid__product-add-to-cart">' . $cart_text . '</div>';
+		$style_class = '';
+		if ( webapp()->option( 'product_archive_button_style' ) ) {
+			$style_class = 'style-'.webapp()->option( 'product_archive_button_style' );
+		}
+		$action_button = '<div class="wp-block-button wc-block-grid__product-add-to-cart '.$style_class.'">' . $cart_text . '</div>';
 		$secondary_image_output = '';
 		if ( 'none' !== $product_image_hover_style ) {
 			if ( is_a( $product, 'WC_Product' ) ) {
@@ -710,9 +728,6 @@ class Component implements Component_Interface {
 		$payments_element = webapp()->option( 'product_content_element_payments' );
 		$colors           = ( isset( $payments_element ) && is_array( $payments_element ) && isset( $payments_element['card_color'] ) && ! empty( $payments_element['card_color'] ) ? $payments_element['card_color'] : 'inherit' );
 		echo '<fieldset class="single-product-payments payments-color-scheme-' . esc_attr( $colors ) . '">';
-		if ( isset( $payments_element ) && is_array( $payments_element ) && isset( $payments_element['title'] ) && ! empty( $payments_element['title'] ) ) {
-			echo '<legend>' . wp_kses_post( $payments_element['title'] ) . '</legend>';
-		}
 		echo '<ul>';
 		if ( isset( $payments_element ) && is_array( $payments_element ) && isset( $payments_element['stripe'] ) && true === $payments_element['stripe'] ) {
 			echo '<li class="single-product-payments-stripe">' . webapp()->get_icon( 'stripe' ) . '</li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -751,6 +766,9 @@ class Component implements Component_Interface {
 			echo '<li class="single-product-payments-custom-05"><img src="' . esc_attr( $payments_element['custom_img_05'] ) . '" class="payment-custom-img' . ( 'inherit' !== $colors ? ' payment-custom-img-gray' : '' ) . '" alt="' . ( isset( $payments_element['custom_id_05'] ) && ! empty( $payments_element['custom_id_05'] ) ? get_post_meta( $payments_element['custom_id_05'], '_wp_attachment_image_alt', true ) : '' ) . '"/></li>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 		echo '</ul>';
+		if ( isset( $payments_element ) && is_array( $payments_element ) && isset( $payments_element['title'] ) && ! empty( $payments_element['title'] ) ) {
+			echo '<span class="title">' . wp_kses_post( $payments_element['title'] ) . '</span>';
+		}
 		echo '</fieldset>';
 	}
 	/**
@@ -1253,7 +1271,13 @@ class Component implements Component_Interface {
 	 * Wrap Action buttons.
 	 */
 	public function archive_action_wrap_start() {
-		echo '<div class="product-action-wrap">';
+		$class = '';
+		if ( webapp()->option( 'product_archive_button_style' ) ) {
+			$class = 'style-'.webapp()->option( 'product_archive_button_style' );
+		}
+		echo '<div class="product-action-wrap '.$class.'">';
+		
+		do_action( 'base_archive_loop_product_action_inner' );
 	}
 	/**
 	 * Close Action buttons wrap.
@@ -1338,7 +1362,11 @@ class Component implements Component_Interface {
 			return;
 		}
 		if ( webapp()->option( 'product_archive_show_results_count' ) || webapp()->option( 'product_archive_show_order' ) || webapp()->option( 'product_archive_toggle' ) || apply_filters( 'base_product_archive_show_top_row', false ) ) {
+			if ( webapp()->option( 'product_archive_sticky_filter' ) ) {
+			    echo '<div id="sticky_filter" class="base-shop-top-row">';
+			} else {
 			echo '<div class="base-shop-top-row">';
+			}
 			do_action( 'base_woocommerce_before_shop_loop_top_row' );
 			if ( webapp()->option( 'product_archive_show_results_count' ) ) {
 				echo '<div class="base-shop-top-item base-woo-results-count">';
@@ -1632,7 +1660,7 @@ class Component implements Component_Interface {
 		// Product Archive Columns Mobile.
 		if ( 'twocolumn' === webapp()->option( 'product_archive_mobile_columns' ) ) {
 			$css->start_media_query( $media_query['mobile'] );
-			$css->set_selector( '.woocommerce ul.products:not(.products-list-view), .wp-site-blocks .wc-block-grid:not(.has-2-columns):not(.has-1-columns) .wc-block-grid__products' );
+			$css->set_selector( '.woocommerce ul.products:not(.products-list-view):not(.splide__list), .wp-site-blocks .wc-block-grid:not(.has-2-columns):not(.has-1-columns) .wc-block-grid__products' );
 			$css->add_property( 'grid-template-columns', 'repeat(2, minmax(0, 1fr))' );
 			$css->add_property( 'column-gap', '0.5rem' );
 			$css->add_property( 'grid-row-gap', '0.5rem' );

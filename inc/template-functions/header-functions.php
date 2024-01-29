@@ -164,7 +164,7 @@ function site_branding() {
 
 	$has_desktop_tagline_and_logo = in_array( 'tagline', $includes, true ) && ( ! isset( $layouts['desktop'] ) || ( isset( $layouts['desktop'] ) && 'top_title_logo_tag' !== $layouts['desktop'] ) );
 
-	echo '<a class="brand' . ( in_array( 'logo', $includes, true ) && ( webapp()->option( 'custom_logo' ) || ( ! webapp()->option( 'custom_logo' ) && webapp()->option( 'use_logo_icon' ) && webapp()->option( 'logo_icon' ) ) ) ? ' has-logo-image' : '' ) . ( in_array( 'logo', $includes, true ) && 'no' !== webapp()->option( 'header_sticky' ) && webapp()->option( 'header_sticky_custom_logo' ) && webapp()->option( 'header_sticky_logo' ) ? ' has-sticky-logo' : '' ) . '" href="' . esc_url( apply_filters( 'base_logo_url', home_url( '/' ) ) ) . '" rel="home">';
+	echo '<a class="brand' . ( in_array( 'logo', $includes, true ) && ( webapp()->option( 'custom_logo' ) || ( ! webapp()->option( 'custom_logo' ) && webapp()->option( 'use_logo_icon' ) && webapp()->option( 'logo_icon' ) ) ) ? ' has-logo-image' : '' ) . ( in_array( 'logo', $includes, true ) && 'no' !== webapp()->option( 'header_sticky' ) && webapp()->option( 'header_sticky_custom_logo' ) && webapp()->option( 'header_sticky_logo' ) ? ' has-sticky-logo' : '' ) . '" href="' . esc_url( apply_filters( 'base_logo_url', home_url( '/' ) ) ) . '" rel="home" aria-label="' . esc_attr( get_bloginfo( 'name' ) ) . '">';
 	foreach ( $includes as $include ) {
 		switch ( $include ) {
 			case 'logo':
@@ -450,7 +450,7 @@ function mobile_site_branding() {
 	$has_mobile_tagline_and_logo = in_array( 'tagline', $includes, true ) && ( ! isset( $layouts['mobile'] ) || ( isset( $layouts['mobile'] ) && 'top_title_logo_tag' !== $layouts['mobile'] ) );
 
 	echo '<div class="site-branding mobile-site-branding branding-layout-' . esc_attr( isset( $layouts['desktop'] ) ? $layouts['desktop'] : 'standard' ) . ' branding-tablet-layout-' . esc_attr( $tab_layout_class ) . ' branding-mobile-layout-' . esc_attr( $mobile_layout_class ) . '">';
-	echo '<a class="brand' . ( in_array( 'logo', $includes, true ) && ( webapp()->option( 'custom_logo' ) || ( ! webapp()->option( 'custom_logo' ) && webapp()->option( 'use_logo_icon' ) && webapp()->option( 'logo_icon' ) ) ) ? ' has-logo-image' : '' ) . ( in_array( 'logo', $includes, true ) && 'no' !== webapp()->option( 'mobile_header_sticky' ) && ( webapp()->option( 'header_sticky_custom_mobile_logo' ) && webapp()->option( 'header_sticky_mobile_logo' ) || webapp()->option( 'header_sticky_custom_logo' ) && webapp()->option( 'header_sticky_logo' ) ) ? ' has-sticky-logo' : '' ) . '" href="' . esc_url( apply_filters( 'base_logo_url', home_url( '/' ) ) ) . '" rel="home">';
+	echo '<a class="brand' . ( in_array( 'logo', $includes, true ) && ( webapp()->option( 'custom_logo' ) || ( ! webapp()->option( 'custom_logo' ) && webapp()->option( 'use_logo_icon' ) && webapp()->option( 'logo_icon' ) ) ) ? ' has-logo-image' : '' ) . ( in_array( 'logo', $includes, true ) && 'no' !== webapp()->option( 'mobile_header_sticky' ) && ( webapp()->option( 'header_sticky_custom_mobile_logo' ) && webapp()->option( 'header_sticky_mobile_logo' ) || webapp()->option( 'header_sticky_custom_logo' ) && webapp()->option( 'header_sticky_logo' ) ) ? ' has-sticky-logo' : '' ) . '" href="' . esc_url( apply_filters( 'base_logo_url', home_url( '/' ) ) ) . '" rel="home" aria-label="' . esc_attr( get_bloginfo( 'name' ) ) . '">';
 	foreach ( $includes as $include ) {
 		switch ( $include ) {
 			case 'logo':
@@ -757,6 +757,7 @@ function mobile_button() {
 function header_cart() {
 	if ( class_exists( 'woocommerce' ) ) {
 		wp_enqueue_script( 'wc-cart-fragments' );
+		$title      = webapp()->option( 'header_cart_title' );
 		$label      = webapp()->option( 'header_cart_label' );
 		$show_total = webapp()->option( 'header_cart_show_total' );
 		$icon       = webapp()->option( 'header_cart_icon', 'shopping-bag' );
@@ -768,11 +769,18 @@ function header_cart() {
 		echo '<div class="header-cart-inner-wrap cart-show-label-' . ( ! empty( $label ) ? 'true' : 'false' ) . ' cart-style-' . esc_attr( webapp()->option( 'header_cart_style' ) ) . ( 'dropdown' === webapp()->option( 'header_cart_style' ) ? ' header-menu-container' : '' ) . '">';
 		if ( 'link' === webapp()->option( 'header_cart_style' ) ) {
 			echo '<a href="' . esc_url( wc_get_cart_url() ) . '"' . ( ! empty( $label ) ? '' : ' aria-label="' . esc_attr__( 'Shopping Cart', 'avanam' ) . '"' ) . ' class="header-cart-button">';
+			echo '<div class="header-cart-content">';
+			if ( ! empty( $title ) || is_customize_preview() ) {
+				?>
+				<span class="header-cart-title"><?php echo esc_html( $title ); ?></span>
+				<?php
+			}
 			if ( ! empty( $label ) || is_customize_preview() ) {
 				?>
 				<span class="header-cart-label"><?php echo esc_html( $label ); ?></span>
 				<?php
 			}
+			echo '</div>';
 			webapp()->print_icon( $icon, '', false );
 			if ( $show_total ) {
 				echo '<span class="header-cart-total header-cart-is-empty-' . ( $cart_contents_count > 0 ? 'false' : 'true' ) . '">' . wp_kses_post( $cart_contents_count ) . '</span>';
@@ -781,11 +789,18 @@ function header_cart() {
 		} elseif ( 'slide' === webapp()->option( 'header_cart_style' ) ) {
 			add_action( 'wp_footer', 'Base\cart_popup', 5 );
 			echo '<button data-toggle-target="#cart-drawer"' . ( ! empty( $label ) ? '' : ' aria-label="' . esc_attr__( 'Shopping Cart', 'avanam' ) . '"' ) . ' class="drawer-toggle header-cart-button" data-toggle-body-class="showing-popup-drawer-from-' . esc_attr( webapp()->option( 'header_mobile_cart_popup_side' ) ) . '" aria-expanded="false" data-set-focus=".cart-toggle-close">';
+			echo '<div class="header-cart-content">';
+			if ( ! empty( $title ) || is_customize_preview() ) {
+				?>
+				<span class="header-cart-title"><?php echo esc_html( $title ); ?></span>
+				<?php
+			}
 			if ( ! empty( $label ) || is_customize_preview() ) {
 				?>
 				<span class="header-cart-label"><?php echo esc_html( $label ); ?></span>
 				<?php
 			}
+			echo '</div>';
 			webapp()->print_icon( $icon, '', false );
 			if ( $show_total ) {
 				echo '<span class="header-cart-total header-cart-is-empty-' . ( $cart_contents_count > 0 ? 'false' : 'true' ) . '">' . wp_kses_post( $cart_contents_count ) . '</span>';
@@ -795,11 +810,18 @@ function header_cart() {
 			echo '<ul id="cart-menu" class="menu woocommerce widget_shopping_cart">';
 			echo '<li class="menu-item menu-item-has-children menu-item-base-cart base-menu-has-icon menu-item--has-toggle">';
 			echo '<a href="' . esc_url( wc_get_cart_url() ) . '"' . ( ! empty( $label ) ? '' : ' aria-label="' . esc_attr__( 'Shopping Cart', 'avanam' ) . '"' ) . ' class="header-cart-button">';
+			echo '<div class="header-cart-content">';
+			if ( ! empty( $title ) || is_customize_preview() ) {
+				?>
+				<span class="header-cart-title"><?php echo esc_html( $title ); ?></span>
+				<?php
+			}
 			if ( ! empty( $label ) || is_customize_preview() ) {
 				?>
 				<span class="header-cart-label"><?php echo esc_html( $label ); ?></span>
 				<?php
 			}
+			echo '</div>';
 			webapp()->print_icon( $icon, '', false );
 			if ( $show_total ) {
 				echo '<span class="header-cart-total header-cart-is-empty-' . ( $cart_contents_count > 0 ? 'false' : 'true' ) . '">' . wp_kses_post( $cart_contents_count ) . '</span>';
@@ -860,6 +882,7 @@ function cart_popup() {
 function mobile_cart() {
 	if ( class_exists( 'woocommerce' ) ) {
 		wp_enqueue_script( 'wc-cart-fragments' );
+		$title      = webapp()->option( 'header_mobile_cart_title' );
 		$label      = webapp()->option( 'header_mobile_cart_label' );
 		$show_total = webapp()->option( 'header_mobile_cart_show_total' );
 		$icon       = webapp()->option( 'header_mobile_cart_icon', 'shopping-bag' );
@@ -870,11 +893,18 @@ function mobile_cart() {
 		echo '<div class="header-cart-inner-wrap cart-show-label-' . ( ! empty( $label ) ? 'true' : 'false' ) . ' cart-style-' . esc_attr( webapp()->option( 'header_mobile_cart_style' ) ) . '">';
 		if ( 'link' === webapp()->option( 'header_mobile_cart_style' ) ) {
 			echo '<a href="' . esc_url( wc_get_cart_url() ) . '"' . ( ! empty( $label ) ? '' : ' aria-label="' . esc_attr__( 'Shopping Cart', 'avanam' ) . '"' ) . ' class="header-cart-button">';
+			echo '<div class="header-cart-content">';
+			if ( ! empty( $title ) || is_customize_preview() ) {
+				?>
+				<span class="header-cart-title"><?php echo esc_html( $title ); ?></span>
+				<?php
+			}
 			if ( ! empty( $label ) || is_customize_preview() ) {
 				?>
 				<span class="header-cart-label"><?php echo esc_html( $label ); ?></span>
 				<?php
 			}
+			echo '</div>';
 			webapp()->print_icon( $icon, '', false );
 			if ( $show_total ) {
 				echo '<span class="header-cart-total">' . wp_kses_post( $cart_contents_count ) . '</span>';
@@ -883,11 +913,18 @@ function mobile_cart() {
 		} elseif ( 'slide' === webapp()->option( 'header_mobile_cart_style' ) ) {
 			add_action( 'wp_footer', 'Base\cart_popup', 5 );
 			echo '<button data-toggle-target="#cart-drawer"' . ( ! empty( $label ) ? '' : ' aria-label="' . esc_attr__( 'Shopping Cart', 'avanam' ) . '"' ) . ' class="drawer-toggle header-cart-button" data-toggle-body-class="showing-popup-drawer-from-' . esc_attr( webapp()->option( 'header_mobile_cart_popup_side' ) ) . '" aria-expanded="false" data-set-focus=".cart-toggle-close">';
+			echo '<div class="header-cart-content">';
+			if ( ! empty( $title ) || is_customize_preview() ) {
+				?>
+				<span class="header-cart-title"><?php echo esc_html( $title ); ?></span>
+				<?php
+			}
 			if ( ! empty( $label ) || is_customize_preview() ) {
 				?>
 				<span class="header-cart-label"><?php echo esc_html( $label ); ?></span>
 				<?php
 			}
+			echo '</div>';
 			webapp()->print_icon( $icon, '', false );
 			if ( $show_total ) {
 				echo '<span class="header-cart-total">' . wp_kses_post( $cart_contents_count ) . '</span>';

@@ -3,6 +3,7 @@
 --------------------------------------------------------------*/
 .product-hero-section .extra-title{
 	display: block;
+	margin-bottom: 1em;
 }
 .woocommerce.single-product.content-style-boxed .product.entry-content-wrap > span.onsale {
     left: 2.5rem;
@@ -663,7 +664,7 @@
 	}
 }
 .single-product .base-breadcrumbs {
-    margin-top: -1rem;
+    margin-top: 1rem;
 }
 .single-product .extra-title+.base-breadcrumbs {
     margin-top: 1em;
